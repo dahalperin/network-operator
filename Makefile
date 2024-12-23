@@ -395,7 +395,7 @@ bundle: $(OPERATOR_SDK) $(KUSTOMIZE) manifests ## Generate bundle manifests and 
 	cd config/manager && $(KUSTOMIZE) edit set image controller=$(TAG)
 	$(KUSTOMIZE) build config/manifests | $(OPERATOR_SDK) generate bundle $(BUNDLE_GEN_FLAGS)
 	git checkout -- config/manager/kustomization.yaml
-	GO=$(GO) BUNDLE_OCP_VERSIONS=$(BUNDLE_OCP_VERSIONS) TAG=$(TAG) hack/scripts/ocp-bundle-postprocess.sh
+	## GO=$(GO) BUNDLE_OCP_VERSIONS=$(BUNDLE_OCP_VERSIONS) TAG=$(TAG) hack/scripts/ocp-bundle-postprocess.sh
 	$(OPERATOR_SDK) bundle validate ./bundle
 
 .PHONY: bundle-build
